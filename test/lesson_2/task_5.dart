@@ -1,7 +1,7 @@
 import 'package:crypto/crypto.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-// import 'package:flutter_fight_club/fight_club_images.dart';
+import 'package:flutter_fight_club/fight_club_images.dart';
 import 'package:flutter_fight_club/main.dart';
 import 'package:flutter_test/flutter_test.dart';
 
@@ -39,8 +39,8 @@ void runTestLesson2Task5() {
     final enemiesMd5checksum = md5.convert(enemiesBytes);
     expect(enemiesMd5checksum.toString(), "98855f71fa4fd927e3789adebcddaf73");
 
-    // expect(FightClubImages.youAvatar, youAvatarPath);
-    // expect(FightClubImages.enemyAvatar, enemyAvatarPath);
+    expect(FightClubImages.youAvatar, youAvatarPath);
+    expect(FightClubImages.enemyAvatar, enemyAvatarPath);
 
     await tester.pumpWidget(MyApp());
 

@@ -5,6 +5,8 @@ import 'package:flutter_fight_club/fight_club_colors.dart';
 import 'package:flutter_fight_club/fight_club_icons.dart';
 import 'package:google_fonts/google_fonts.dart';
 
+import 'fight_club_images.dart';
+
 void main() {
   runApp(MyApp());
 }
@@ -54,7 +56,15 @@ class MyHomePageState extends State<MyHomePage> {
               yourLivesCount: yourLives,
               enemiesLivesCount: enemiesLives,
             ),
-            const Expanded(child: SizedBox()),
+            const Expanded(
+              child: Padding(
+                padding:
+                    EdgeInsets.only(left: 16, right: 16, top: 30, bottom: 30),
+                child: ColoredBox(
+                    color: Color.fromRGBO(197, 209, 234, 1),
+                    child: SizedBox(width: double.infinity)),
+              ),
+            ),
             ControlsWidget(
               defendingBodyPart: defendingBodyPart,
               selectAttackingBodyPart: _selectAttackingBodyPart,
@@ -298,9 +308,10 @@ class FightersInfo extends StatelessWidget {
                         color: FightClubColors.darkGreyText,
                       )),
                   SizedBox(height: 12),
-                  ColoredBox(
-                    color: Colors.red,
-                    child: SizedBox(height: 92, width: 92),
+                  Image.asset(
+                    FightClubImages.youAvatar,
+                    width: 92,
+                    height: 92,
                   ),
                 ],
               ),
@@ -316,9 +327,10 @@ class FightersInfo extends StatelessWidget {
                         color: FightClubColors.darkGreyText,
                       )),
                   SizedBox(height: 12),
-                  ColoredBox(
-                    color: Colors.blue,
-                    child: SizedBox(height: 92, width: 92),
+                  Image.asset(
+                    FightClubImages.enemyAvatar,
+                    width: 92,
+                    height: 92,
                   ),
                 ],
               ),
