@@ -365,16 +365,26 @@ class LivesWidget extends StatelessWidget {
       mainAxisSize: MainAxisSize.min,
       children: List.generate(overallLivesCount, (index) {
         if (index < currentLivesCount) {
-          return Image.asset(
-            FightClubIcons.heartFull,
-            width: 18,
-            height: 18,
+          return Column(
+            children: [
+              Image.asset(
+                FightClubIcons.heartFull,
+                width: 18,
+                height: 18,
+              ),
+              index != overallLivesCount - 1 ? SizedBox(height: 4) : SizedBox(),
+            ],
           );
         } else {
-          return Image.asset(
-            FightClubIcons.heartEmpty,
-            width: 18,
-            height: 18,
+          return Column(
+            children: [
+              Image.asset(
+                FightClubIcons.heartEmpty,
+                width: 18,
+                height: 18,
+              ),
+              index != overallLivesCount - 1 ? SizedBox(height: 4) : SizedBox(),
+            ],
           );
         }
       }),
