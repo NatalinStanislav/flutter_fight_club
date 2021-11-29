@@ -44,6 +44,8 @@ class MyHomePageState extends State<MyHomePage> {
   int yourLives = maxLives;
   int enemiesLives = maxLives;
 
+  String textResult = "";
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -56,13 +58,17 @@ class MyHomePageState extends State<MyHomePage> {
               yourLivesCount: yourLives,
               enemiesLivesCount: enemiesLives,
             ),
-            const Expanded(
+            Expanded(
               child: Padding(
                 padding:
                     EdgeInsets.only(left: 16, right: 16, top: 30, bottom: 30),
                 child: ColoredBox(
-                    color: Color.fromRGBO(197, 209, 234, 1),
-                    child: SizedBox(width: double.infinity)),
+                  color: Color.fromRGBO(197, 209, 234, 1),
+                  child: SizedBox(
+                    width: double.infinity,
+                    child: Center(child: Text(textResult)),
+                  ),
+                ),
               ),
             ),
             ControlsWidget(
@@ -83,6 +89,36 @@ class MyHomePageState extends State<MyHomePage> {
         ),
       ),
     );
+  }
+
+  String _getPunchResults() {
+    if (yourLives == 0 && enemiesLives == 0) {
+      return "Draw";
+    } else if (enemiesLives == 0 && yourLives > 0) {
+      return "You won";
+    } else if (yourLives == 0 && enemiesLives > 0) {
+      return "You lost";
+    }
+
+    if (defendingBodyPart == null || attackingBodyPart == null) {
+      return "";
+    } else {
+      String text = "";
+      if (yourLives > 0 && enemiesLives > 0) {
+        if (attackingBodyPart == whatEnemyDefends) {
+          text = "Your attack was blocked.\n";
+        } else {
+          text = "You hit enemy’s ${attackingBodyPart!.name.toLowerCase()}.\n";
+        }
+
+        if (whatEnemyAttacks == defendingBodyPart) {
+          text += "Enemy’s attack was blocked.";
+        } else {
+          text += "Enemy hit your ${whatEnemyAttacks.name.toLowerCase()}.";
+        }
+      }
+      return text;
+    }
   }
 
   Color _getGoButtonColor() {
@@ -114,6 +150,7 @@ class MyHomePageState extends State<MyHomePage> {
   }
 
   void _onGoButtonClicked() {
+    textResult = _getPunchResults();
     if (yourLives == 0 || enemiesLives == 0) {
       setState(() {
         yourLives = maxLives;
