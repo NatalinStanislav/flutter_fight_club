@@ -66,7 +66,7 @@ class MyHomePageState extends State<MyHomePage> {
                   color: Color.fromRGBO(197, 209, 234, 1),
                   child: SizedBox(
                     width: double.infinity,
-                    child: Center(child: Text(textResult)),
+                    child: Center(child: Text(_isItTheEnd() ? _getFinishResults() : textResult)),
                   ),
                 ),
               ),
@@ -92,13 +92,6 @@ class MyHomePageState extends State<MyHomePage> {
   }
 
   String _getPunchResults() {
-    if (yourLives == 0 && enemysLives == 0) {
-      return "Draw";
-    } else if (enemysLives == 0 && yourLives > 0) {
-      return "You won";
-    } else if (yourLives == 0 && enemysLives > 0) {
-      return "You lost";
-    }
 
     if (defendingBodyPart == null || attackingBodyPart == null) {
       return "";
@@ -119,6 +112,22 @@ class MyHomePageState extends State<MyHomePage> {
       }
       return text;
     }
+  }
+
+  String _getFinishResults() {
+    if (yourLives == 0 && enemysLives == 0) {
+      return "Draw";
+    } else if (enemysLives == 0 && yourLives > 0) {
+      return "You won";
+    } else if (yourLives == 0 && enemysLives > 0) {
+      return "You lost";
+    } else {
+      return "";
+    }
+  }
+
+  bool _isItTheEnd() {
+    return (yourLives == 0 || enemysLives == 0);
   }
 
   Color _getGoButtonColor() {
