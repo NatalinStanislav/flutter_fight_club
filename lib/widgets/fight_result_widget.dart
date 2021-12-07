@@ -64,7 +64,7 @@ class FightResultWidget extends StatelessWidget {
                   height: 36,
                   child: Center(
                     child: Text(
-                      fightResult!.result,
+                      fightResult!.result.toLowerCase(),
                       style: TextStyle(
                         color: Colors.white,
                         fontSize: 16,
