@@ -33,7 +33,6 @@ class FightResultWidget extends StatelessWidget {
           ),
         ),
         SizedBox(
-          height: 140,
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
