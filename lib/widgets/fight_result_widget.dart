@@ -56,9 +56,9 @@ class FightResultWidget extends StatelessWidget {
                   horizontal: 12,
                   vertical: 4,
                 ),
-                decoration: ShapeDecoration(
+                decoration: BoxDecoration(
                   color: FightResult.getFightResultButtonColor(fightResult!),
-                  shape: StadiumBorder(),
+                  borderRadius: BorderRadius.circular(22),
                 ),
                 child: SizedBox(
                   height: 36,
