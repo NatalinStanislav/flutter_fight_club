@@ -23,76 +23,38 @@ class StatisticsPage extends StatelessWidget {
               ),
             ),
             Expanded(child: SizedBox()),
-            Column(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                FutureBuilder<int?>(
-                    future: SharedPreferences.getInstance().then(
-                        (sharedPreferences) =>
-                            sharedPreferences.getInt("stats_won")),
-                    builder: (context, snapshot) {
-                      if (!snapshot.hasData || snapshot.data == null) {
-                        return Text(
-                          "Won: 0",
-                          textAlign: TextAlign.center,
-                          style: TextStyle(
-                              fontSize: 16,
-                              color: FightClubColors.darkGreyText),
-                        );
-                      }
-                      return Text(
-                        "Won: ${snapshot.data}",
+            FutureBuilder<SharedPreferences>(
+                future: SharedPreferences.getInstance(),
+                builder: (context, snapshot) {
+                  if (!snapshot.hasData || snapshot.data == null) {
+                    return SizedBox();
+                  }
+                  SharedPreferences sp = snapshot.data!;
+                  return Column(
+                    children: [
+                      Text(
+                        "Won: ${sp.getInt("stats_won") ?? 0}",
                         textAlign: TextAlign.center,
                         style: TextStyle(
                             fontSize: 16, color: FightClubColors.darkGreyText),
-                      );
-                    }),
-                SizedBox(height: 30),
-                FutureBuilder<int?>(
-                    future: SharedPreferences.getInstance().then(
-                        (sharedPreferences) =>
-                            sharedPreferences.getInt("stats_draw")),
-                    builder: (context, snapshot) {
-                      if (!snapshot.hasData || snapshot.data == null) {
-                        return Text(
-                          "Draw: 0",
-                          textAlign: TextAlign.center,
-                          style: TextStyle(
-                              fontSize: 16,
-                              color: FightClubColors.darkGreyText),
-                        );
-                      }
-                      return Text(
-                        "Draw: ${snapshot.data}",
+                      ),
+                      SizedBox(height: 30),
+                      Text(
+                        "Draw: ${sp.getInt("stats_draw") ?? 0}",
                         textAlign: TextAlign.center,
                         style: TextStyle(
                             fontSize: 16, color: FightClubColors.darkGreyText),
-                      );
-                    }),
-                SizedBox(height: 30),
-                FutureBuilder<int?>(
-                    future: SharedPreferences.getInstance().then(
-                        (sharedPreferences) =>
-                            sharedPreferences.getInt("stats_lost")),
-                    builder: (context, snapshot) {
-                      if (!snapshot.hasData || snapshot.data == null) {
-                        return Text(
-                          "Lost: 0",
-                          textAlign: TextAlign.center,
-                          style: TextStyle(
-                              fontSize: 16,
-                              color: FightClubColors.darkGreyText),
-                        );
-                      }
-                      return Text(
-                        "Lost: ${snapshot.data}",
+                      ),
+                      SizedBox(height: 30),
+                      Text(
+                        "Lost: ${sp.getInt("stats_lost") ?? 0}",
                         textAlign: TextAlign.center,
                         style: TextStyle(
                             fontSize: 16, color: FightClubColors.darkGreyText),
-                      );
-                    }),
-              ],
-            ),
+                      ),
+                    ],
+                  );
+                }),
             Expanded(child: SizedBox()),
             Padding(
               padding: const EdgeInsets.only(bottom: 16),
